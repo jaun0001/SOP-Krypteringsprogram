@@ -7,19 +7,41 @@ int e = 7;
 int d = 23;
 
 String message = "Hej";
-int[] encrypted;
-String decrypted;
+int[] encrypted = new int[message.length()];
+char[] decrypted = new char[message.length()]; // danner et index for characters til at decryptere message ordenligt
 
-void setup(){
+void setup() {
 
-noLoop();
+  noLoop();
+
+  //danner encryption funktionen
+
+  for (int i = 0; i < message.length(); i++) {
+    int m = message.charAt(i);
+    encrypted[i] = modPow(m, e, n);
+  }
+
+  //danner decryption funktionen
+
+  for (int i = 0; i < encrypted.length; i++) {
+    int m = modPow(encrypted[i], d, n);
+    decrypted[i] = (char)m; //typecaster
+  }
+  println(message);
 }
 
-void draw(){
 
-}
 
-encrypted = new int[message.length()];
-for (int i = 0; i < message.length(); i++){
-  int m = message.chatAt(i);
+
+
+int modPow(int base, int exp, int mod) {
+  long result = 1;
+  long b = base % mod;
+
+  while (exp > 0) {
+    if ((exp & 1)== 1) result = (result * b) % mod;
+    b = (b * b) % mod;
+    exp >>= 1;
+  }
+  return int(result);
 }
