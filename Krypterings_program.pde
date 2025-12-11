@@ -1,5 +1,8 @@
-int p = 11;
+
+
+int p = 17;
 int q = 11;
+
 int n = p * q;
 int phi = (p-1) * (q-1);
 
@@ -7,12 +10,10 @@ int e = 7;
 int d = 23;
 
 String message = "Hej";
-int[] encrypted = new int[message.length()];
+int[] encrypted = new int[message.length()]; //danner index til et hvert bogstav ved at bruge integer
 char[] decrypted = new char[message.length()]; // danner et index for characters til at decryptere message ordenligt
 
-void setup() {
-
-  noLoop();
+void setup(){
 
   //danner encryption funktionen
 
@@ -28,10 +29,13 @@ void setup() {
     decrypted[i] = (char)m; //typecaster
   }
   println(message);
+  
+  print("Krypteret: ");
+  for(int c : encrypted) print(c + " ");
+  println();
+  
+  println("Dekrypteret: " + new String(decrypted));
 }
-
-
-
 
 
 int modPow(int base, int exp, int mod) {
